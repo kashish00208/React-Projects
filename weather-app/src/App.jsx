@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { json } from "react-router-dom";
-
 function App() {
-  APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
+  const APIKEY = process.env.REACT_APP_API_KEY;
   const API = `http://api.openweathermap.org/geo/1.0/direct?q=Delhi&limit=1&appid=${APIKEY}`;
 
-  const[weatherData,GetData] = useState(null);
+  const [weatherData,setweatherData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const getData = async (lat, lon, country) => {
     try {
@@ -30,11 +30,14 @@ function App() {
         if (!weatherResponse.ok) {
           throw new Error("Error while getting data by API");
         }
-        const FinalData = await weatherResponse.json();
-        console.log(FinalData);
+        const weatherData = await weatherResponse.json();
+        setweatherData(weatherData)
+        console.log(weatherData);
       }
-    } catch (error) {
-      console.log("Error", error);
+    }catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(()=>{
@@ -43,15 +46,23 @@ function App() {
 
   return (
     <>
+
       <main>
-        <div className="section-1"></div>
-        <div className="Section-2">
-          <h2>WeatherWave</h2>
-          <button>Get Started</button>
-        </div>
-      </main>
+      <div className="section">
+        <h2>WeatherWave</h2>
+        <button>Get Started</button>
+        {loading && <p>Loading...</p>}
+        {error && <p>Error: {error}</p>}
+        {weatherData && (
+          <div>
+            <h3>Weather Data</h3>
+            <pre>{JSON.stringify(weatherData, null, 2)}</pre>
+          </div>
+        )}
+      </div>
+    </main>
     </>
   );
 }
 
-export default App;
+export default App; 
