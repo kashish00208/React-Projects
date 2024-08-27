@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 function App() {
-  const APIKEY = process.env.REACT_APP_API_KEY;
-  const API = `http://api.openweathermap.org/geo/1.0/direct?q=Delhi&limit=1&appid=${APIKEY}`;
+  const apikey = import.meta.env.VITE_APIKEY;
+  const API = `http://api.openweathermap.org/geo/1.0/direct?q=Delhi&limit=1&appid=${apikey}`;
   const [weatherData,setweatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,7 +24,7 @@ function App() {
         console.log(country);
 
         // Construct the weather API URL
-        const BaseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIKEY}`;
+        const BaseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}`;
         const weatherResponse = await fetch(BaseUrl);
         if (!weatherResponse.ok) {
           throw new Error("Error while getting data by API");
