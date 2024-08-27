@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 function App() {
   const APIKEY = process.env.REACT_APP_API_KEY;
   const API = `http://api.openweathermap.org/geo/1.0/direct?q=Delhi&limit=1&appid=${APIKEY}`;
-
   const [weatherData,setweatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
