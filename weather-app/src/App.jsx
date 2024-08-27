@@ -46,19 +46,19 @@ function App() {
 
   return (
     <>
-
-      <main>
-      <div className="section">
+    <main>
+      <div className="section-1">
         <h2>WeatherWave</h2>
-        <button>Get Started</button>
-        {loading && <p>Loading...</p>}
-        {error && <p>Error: {error}</p>}
-        {weatherData && (
-          <div>
-            <h3>Weather Data</h3>
-            <pre>{JSON.stringify(weatherData, null, 2)}</pre>
-          </div>
-        )}
+        {loading && <p>Loading..........</p>}
+        {error && <p>Error:{error}</p>}
+        {
+          weatherData && (
+            <div>
+              <h3>Weather data</h3>
+              <pre>{JSON.stringify(weatherData,null,2)}</pre>
+            </div>
+          )
+        }
       </div>
     </main>
     </>
