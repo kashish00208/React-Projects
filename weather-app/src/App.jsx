@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 function App() {
   const apikey = import.meta.env.VITE_APIKEY;
   const API = `http://api.openweathermap.org/geo/1.0/direct?q=Delhi&limit=1&appid=${apikey}`;
-  const [weatherData,setweatherData] = useState(null);
+  const [weatherData, setweatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -30,38 +30,39 @@ function App() {
           throw new Error("Error while getting data by API");
         }
         const weatherData = await weatherResponse.json();
-        setweatherData(weatherData)
+        setweatherData(weatherData);
         console.log(weatherData);
+        const mainData = weatherData.main;
+        console.log(mainData)
+        console.log(mainData.temp)
       }
-    }catch (error) {
+    } catch (error) {
       setError(error.message);
     } finally {
       setLoading(false);
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  },[])
+  }, []);
 
   return (
     <>
-    <main>
-      <div className="section-1">
-        <h2>WeatherWave</h2>
-        {loading && <p>Loading..........</p>}
-        {error && <p>Error:{error}</p>}
-        {
-          weatherData && (
+      <main>
+        <div className="section-1">
+          <h2>WeatherWave</h2>
+          {loading && <p>Loading..........</p>}
+          {error && <p>Error:{error}</p>}
+          {weatherData && (
             <div>
               <h3>Weather data</h3>
-              <pre>{JSON.stringify(weatherData,null,2)}</pre>
+              <pre>{JSON.stringify(weatherData, null, 2)}</pre>
             </div>
-          )
-        }
-      </div>
-    </main>
+          )}
+        </div>
+      </main>
     </>
   );
 }
 
-export default App; 
+export default App;
