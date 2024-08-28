@@ -8,7 +8,7 @@ const Weather = () => {
   const [error, setError] = useState(null);
 
   const getData = async (lat, lon, country) => {
-    try {
+    try { 
       const response = await fetch(API);
       if (!response.ok) {
         throw new Error("Error while generating response");
