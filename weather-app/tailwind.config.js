@@ -13,6 +13,12 @@ export default {
       backgroundImage: {
         'custom-gradient': 'linear-gradient(315deg, #000b1f 0%, #6b7c99 94%)',
       },
+      custom:{
+        customFlex:'display:flex align-items:center justify-content:center'
+      },
+      screens:{
+        cutom700:"700px"
+      }
     },
   },
   plugins: [],

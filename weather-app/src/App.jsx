@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
 import Weather from "./components/weather";
 import Img from "./images/image.jpeg";
+
 function App() {
   return (
-    <>
-      <main className="bg-custom-gradient  w-screen h-screen">
-        <div className="w-3/5 pl-40 pt-12">
-          <div className="bg-custom-dark py-8 rounded-3xl">
-            <div className="section-1 w-full h-full pl-5 pr-5">
-              <img src={Img} className="rounded-3xl" alt="Image" />
-            </div>
-            <div className="section-2">
-              <h1>WeatherWave</h1>
-              <p>Weather App</p>
-            </div>
+    <main className="bg-custom-gradient w-screen h-screen flex items-center justify-center">
+      <div className="w-full max-w-4xl p-4">
+        <div className="bg-custom-dark py-6 px-4 rounded-2xl flex flex-col md:flex-row items-center">
+          <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
+            <img
+              src={Img}
+              className="w-full h-auto rounded-3xl"
+              alt="Image"
+            />
+          </div>
+          <div className="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left p-4 md:p-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">WeatherWave</h2>
+            <p className="text-sm md:text-base text-white mb-4">A weather App</p>
+            <button className="w-full md:w-auto text-sm bg-blue-400 text-white rounded-3xl px-4 py-2 ">Get Started</button>
           </div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
 
