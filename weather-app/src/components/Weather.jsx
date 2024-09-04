@@ -20,10 +20,6 @@ const Weather = () => {
         lat = location.lat;
         lon = location.lon;
         country = location.name;
-        console.log(lat);
-        console.log(lon);
-        console.log(country);
-
         // Construct the weather API URL
         const BaseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}`;
         const weatherResponse = await fetch(BaseUrl);
@@ -34,8 +30,9 @@ const Weather = () => {
         setweatherData(weatherData);
         console.log(weatherData);
         const mainData = weatherData.main;
+        const windData = weatherData.wind;
+        console.log(windData)
         console.log(mainData);
-        console.log(mainData.temp);
       }
     } catch (error) {
       setError(error.message);
@@ -56,7 +53,7 @@ const Weather = () => {
           {weatherData && (
             <div>
               <h3>Weather data</h3>
-              <pre>{JSON.stringify(weatherData, null, 2)}</pre>
+              <p>{weatherData.name}</p> 
             </div>
           )}
         </div>
