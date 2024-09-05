@@ -7,9 +7,7 @@ const Weather = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  function converstion(){
-    
-  }  
+  function converstion() {}
 
   const getData = async (lat, lon, country) => {
     try {
@@ -23,7 +21,7 @@ const Weather = () => {
         const location = data[0];
         lat = location.lat;
         lon = location.lon;
-        country = location.name; 
+        country = location.name;
         const BaseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}`;
         const weatherResponse = await fetch(BaseUrl);
         if (!weatherResponse.ok) {
@@ -59,11 +57,11 @@ const Weather = () => {
               <p>{weatherData.name}</p>
             </div>
           )}
-
-          {weatherData&& weatherData.main && (<div>
-            <h2>maindata</h2>
-          </div>)}
-
+          {weatherData && weatherData.main && (
+            <div>
+              <p>{Math.floor(weatherData.main.temp) - 272}</p>
+            </div>
+          )}
         </div>
       </main>
     </>
