@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 const Weather = () => {
   const apikey = import.meta.env.VITE_APIKEY;
   const API = `http://api.openweathermap.org/geo/1.0/direct?q=Delhi&limit=1&appid=${apikey}`;
@@ -7,8 +7,12 @@ const Weather = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  function converstion(){
+    
+  }  
+
   const getData = async (lat, lon, country) => {
-    try { 
+    try {
       const response = await fetch(API);
       if (!response.ok) {
         throw new Error("Error while generating response");
@@ -19,8 +23,7 @@ const Weather = () => {
         const location = data[0];
         lat = location.lat;
         lon = location.lon;
-        country = location.name;
-        // Construct the weather API URL
+        country = location.name; 
         const BaseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}`;
         const weatherResponse = await fetch(BaseUrl);
         if (!weatherResponse.ok) {
@@ -28,11 +31,11 @@ const Weather = () => {
         }
         const weatherData = await weatherResponse.json();
         setweatherData(weatherData);
-        console.log(weatherData);
         const mainData = weatherData.main;
         const windData = weatherData.wind;
-        console.log(windData)
-        console.log(mainData);
+        console.log(weatherData);
+        console.log(mainData.temp);
+        console.log(windData);
       }
     } catch (error) {
       setError(error.message);
@@ -53,9 +56,14 @@ const Weather = () => {
           {weatherData && (
             <div>
               <h3>Weather data</h3>
-              <p>{weatherData.name}</p> 
+              <p>{weatherData.name}</p>
             </div>
           )}
+
+          {weatherData&& weatherData.main && (<div>
+            <h2>maindata</h2>
+          </div>)}
+
         </div>
       </main>
     </>
