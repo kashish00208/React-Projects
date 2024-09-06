@@ -40,6 +40,7 @@ const Weather = () => {
     } finally {
       setLoading(false);
     }
+    
   };
   useEffect(() => {
     getData();
@@ -47,19 +48,19 @@ const Weather = () => {
   return (
     <>
       <main>
+
         <div className="section-1">
-          <h2>WeatherWave</h2>
-          {loading && <p>Loading..........</p>}
-          {error && <p>Error:{error}</p>}
+          
+          {loading &&  <p className="text-2xl text-center my-5">wait getting the weather report</p>}
+          {error && <p className="text-2xl text-center my-5">Error:{error}</p>}
           {weatherData && (
             <div>
-              <h3>Weather data</h3>
-              <p>{weatherData.name}</p>
+              
             </div>
           )}
           {weatherData && weatherData.main && (
             <div>
-              <p>{Math.floor(weatherData.main.temp) - 272}</p>
+              {/* <p>{Math.floor(weatherData.main.temp) - 272}</p> */}
             </div>
           )}
         </div>
