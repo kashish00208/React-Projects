@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import ImgCloud from "../images/cloud.jpg"
+import ImgCloud from "../images/cloud.jpg";
 const Weather = () => {
   const apikey = import.meta.env.VITE_APIKEY;
   const API = `http://api.openweathermap.org/geo/1.0/direct?q=Delhi&limit=1&appid=${apikey}`;
@@ -31,8 +31,6 @@ const Weather = () => {
         const mainData = weatherData.main;
         const windData = weatherData.wind;
         console.log(weatherData);
-        console.log(mainData.temp);
-        console.log(windData);
       }
     } catch (error) {
       setError(error.message);
@@ -43,22 +41,52 @@ const Weather = () => {
   useEffect(() => {
     getData();
   }, []);
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const date = new Date();
+
   return (
     <>
       <main className="w-screen h-screen bg-slate-300">
         <div className="p-10 flex ">
-          {loading && (
-            <p className="text-2xl text-center my-5">
-              wait getting the weather report
-            </p>
-          )}
-          {error && <p className="text-2xl text-center my-5">Error:{error}</p>}
           <div className="section-1  w-1/3 h-auto p-5 flex flex-row justify-center bg-white">
-            {weatherData && weatherData.main && (
+            {weatherData && weatherData.main && weatherData.weather && (
               <div className="">
                 <input type="text" />
-                <img src={ImgCloud} className="w-40 h-40 "  alt="cloudImg" />
-                <p className="text-center text-3xl p-5">{Math.floor(weatherData.main.temp) - 272} <span>&deg; C</span> </p>
+                <img src={ImgCloud} className="w-40 h-40 " alt="cloudImg" />
+                <p className="text-center text-3xl p-2 pt-4">
+                  {Math.floor(weatherData.main.temp) - 272} <span>&deg; C</span>{" "}
+                </p>
+                <p className="p-2">{weatherData.weather[0].description}</p>
+                <div className="border-solid border-2  ..."></div>
+                <div className="p-5">
+                  <p className="text-center">
+                    {months[date.getMonth()]} {date.getDate()}{" "}
+                    {date.getFullYear()}
+                  </p>
+                </div>
+                <div className="text-3xl text-center p-5">{weatherData.name}</div>
               </div>
             )}
           </div>
