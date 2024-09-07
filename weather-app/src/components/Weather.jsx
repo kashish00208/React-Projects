@@ -3,11 +3,18 @@ import { useState, useEffect } from "react";
 import ImgCloud from "../images/cloud.jpg";
 const Weather = () => {
   const apikey = import.meta.env.VITE_APIKEY;
-  const API = `http://api.openweathermap.org/geo/1.0/direct?q=Delhi&limit=1&appid=${apikey}`;
+  const [city,setCity] = useState()
+  const API = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apikey}`;
   const [weatherData, setweatherData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+  const [error, setError] = useState('Delhi');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getData();
+  };
+  const handleInputChange = (e) => {
+    setCity(e.target.value);
+  };
   const getData = async (lat, lon, country) => {
     try {
       const response = await fetch(API);
@@ -65,7 +72,7 @@ const Weather = () => {
     "December",
   ];
   const date = new Date();
-
+  
   return (
     <>
       <main className="w-screen h-screen bg-slate-300">
@@ -73,7 +80,15 @@ const Weather = () => {
           <div className="section-1  w-1/3 h-auto p-5 flex flex-row justify-center bg-white">
             {weatherData && weatherData.main && weatherData.weather && (
               <div className="">
-                <input type="text" />
+                <form onSubmit={handleSubmit}>
+                  <input
+                    type="text"
+                    value={city}
+                    onChange={handleInputChange}
+                    placeholder="Enter city name"
+                  />
+                  <button type="submit">Get Weather</button>
+                </form>
                 <img src={ImgCloud} className="w-40 h-40 " alt="cloudImg" />
                 <p className="text-center text-3xl p-2 pt-4">
                   {Math.floor(weatherData.main.temp) - 272} <span>&deg; C</span>{" "}
