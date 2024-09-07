@@ -1,13 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import ImgCloud from "../images/cloud.jpg"
 const Weather = () => {
   const apikey = import.meta.env.VITE_APIKEY;
   const API = `http://api.openweathermap.org/geo/1.0/direct?q=Delhi&limit=1&appid=${apikey}`;
   const [weatherData, setweatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  function converstion() {}
 
   const getData = async (lat, lon, country) => {
     try {
@@ -40,29 +39,30 @@ const Weather = () => {
     } finally {
       setLoading(false);
     }
-    
   };
   useEffect(() => {
     getData();
   }, []);
   return (
     <>
-      <main>
-
-        <div className="section-1">
-          
-          {loading &&  <p className="text-2xl text-center my-5">wait getting the weather report</p>}
+      <main className="w-screen h-screen bg-slate-300">
+        <div className="p-10 flex ">
+          {loading && (
+            <p className="text-2xl text-center my-5">
+              wait getting the weather report
+            </p>
+          )}
           {error && <p className="text-2xl text-center my-5">Error:{error}</p>}
-          {weatherData && (
-            <div>
-              
-            </div>
-          )}
-          {weatherData && weatherData.main && (
-            <div>
-              {/* <p>{Math.floor(weatherData.main.temp) - 272}</p> */}
-            </div>
-          )}
+          <div className="section-1  w-1/3 h-auto p-5 flex flex-row justify-center bg-white">
+            {weatherData && weatherData.main && (
+              <div className="">
+                <input type="text" />
+                <img src={ImgCloud} className="w-40 h-40 "  alt="cloudImg" />
+                <p className="text-center text-3xl p-5">{Math.floor(weatherData.main.temp) - 272} <span>&deg; C</span> </p>
+              </div>
+            )}
+          </div>
+          <div className="w-2/3 bg-slate-500">2</div>
         </div>
       </main>
     </>

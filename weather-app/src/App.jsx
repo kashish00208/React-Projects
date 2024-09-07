@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Weather from "./components/weather";
+import Weather from "./components/Weather";
 import Img from "./images/image.jpeg";
 import {
   BrowserRouter as Router,
