@@ -86,11 +86,13 @@ const Weather = () => {
                     {date.getFullYear()}
                   </p>
                 </div>
-                <div className="text-3xl text-center p-5">{weatherData.name}</div>
+                <div className="text-3xl text-center p-5">
+                  {weatherData.name}
+                </div>
               </div>
             )}
           </div>
-          <div className="w-2/3 bg-slate-500">2</div>
+          {/* <div className="w-2/3 bg-slate-500">2</div> */}
         </div>
       </main>
     </>
