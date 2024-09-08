@@ -66,7 +66,7 @@ const Weather = () => {
 
   return (
     <>
-      <main className="w-screen bg-slate-300">
+      <main className="w-screen bg-slate-400">
         <div className="p-5 md:p-10 flex flex-col md:flex-row">
           <div className="section-1 w-full md:w-1/3 h-auto p-5 flex flex-col items-center bg-white rounded-lg shadow-lg">
             {weatherData && weatherData.main && weatherData.weather && (
@@ -85,7 +85,7 @@ const Weather = () => {
                     />
                     <button
                       type="submit"
-                      className=" text-white p-2  rounded-r-lg   hover:bg-blue-600"
+                      className="  p-2  rounded-r-lg"
                     >
                       <i className="fa-solid fa-magnifying-glass"></i>
                     </button>
