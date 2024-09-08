@@ -66,9 +66,9 @@ const Weather = () => {
 
   return (
     <>
-      <main className="w-screen bg-slate-400">
-        <div className="p-5 md:p-10 flex flex-col md:flex-row">
-          <div className="section-1 w-full md:w-1/3 h-auto p-5 flex flex-col items-center bg-white rounded-lg shadow-lg">
+      <main className="w-screen h-screen bg-slate-400">
+        <div className="p-5 md:p-10 flex flex-col md:flex-row justify-center">
+          <div className="section-1 w-full md:w-1/3  h-auto p-5 flex flex-col  items-center bg-white rounded-lg shadow-lg">
             {weatherData && weatherData.main && weatherData.weather && (
               <div className="w-auto">
                 <div className="border-solid text-lg flex flex-col md:flex-row justify-center items-center md:justify-between px-3 mb-4 rounded-3xl bg-slate-200">
@@ -115,7 +115,6 @@ const Weather = () => {
               </div>
             )}
           </div>
-          {/* <div className="w-full md:w-2/3 bg-slate-500">2</div> */}
         </div>
       </main>
     </>
