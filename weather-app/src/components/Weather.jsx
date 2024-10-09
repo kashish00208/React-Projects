@@ -77,7 +77,7 @@ const Weather = () => {
                     className="flex items-center w-full"
                   >
                     <input
-                      className="bg-slate-200 flex-grow p-2 rounded-l-lg"
+                      className="bg-slate-200 flex-grow p-2 rounded-l-lg border-none outline-none"
                       type="text"
                       value={city}
                       onChange={handleInputChange}
